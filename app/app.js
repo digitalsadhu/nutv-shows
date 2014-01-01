@@ -10,7 +10,7 @@ require('angular-resource/angular-resource.js');
 
 // The jQuery dependency for this is included in the index.html page.
 // This is for cdn and simplicity purposes
-require('angular-sortable/src/sortable.js');
+// require('angular-sortable/src/sortable.js');
 
 // Create the angular app with all the dependencies
 var app = angular.module(
@@ -28,8 +28,10 @@ var app = angular.module(
 // Configuration
 
 app.config(require('./config/routes.js'));
-app.value('GOOGLE_API_KEY', 'AIzaSyC9siTsdops0d7xyxc4CJwYmknOT7HFGKA');
-app.value('FULL_FRONTAL_CHANNEL_ID', 'UCCNbWH0nOCuJQuYW1QViDqA');
+app.constant('GOOGLE_API_KEY', 'AIzaSyC9siTsdops0d7xyxc4CJwYmknOT7HFGKA');
+app.constant('SHOW_NAMES', {
+  'full-frontal': 'UCCNbWH0nOCuJQuYW1QViDqA'
+});
 
 // Controllers
 
@@ -37,6 +39,21 @@ app.controller(
   'IndexController',
   require('./controllers/indexController.js')
 );
+
+app.controller(
+  'ShowsController',
+  require('./controllers/showsController.js')
+);
+
+// app.controller(
+//   'EpisodesController',
+//   require('./controllers/episodesController.js')
+// );
+
+// app.controller(
+//   'ClipsController',
+//   require('./controllers/clipsController.js')
+// );
 
 // Directives
 
@@ -47,10 +64,10 @@ app.controller(
 
 // Factories
 
-// app.factory(
-//   'Project',
-//   require('./factories/project.js')
-// );
+app.factory(
+  'Show',
+  require('./factories/show.js')
+);
 
 // Services
 
